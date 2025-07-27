@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
       termMonths: body.termMonths,
       monthlyInstallment: body.monthlyInstallment,
       totalPayable: body.totalPayable,
-      createdAt: new Date().toISOString()
+      // createdAt will use defaultNow() from schema
     }).returning()
     
     return {

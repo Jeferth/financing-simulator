@@ -1,10 +1,10 @@
 import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
-  dialect: 'sqlite',
+  dialect: 'postgresql',
   schema: './server/database/schema.ts',
   out: './server/database/migrations',
   dbCredentials: {
-    url: process.env.DATABASE_URL || 'file:./.data/db.sqlite'
+    url: process.env.DATABASE_URL || 'postgresql://localhost:5432/financing_simulator'
   }
 })

@@ -39,11 +39,11 @@ pnpm run db:studio      # Open Drizzle Studio on port 3003
 ## Architecture
 
 ### Database Layer
-- **ORM**: Drizzle ORM with SQLite
+- **ORM**: Drizzle ORM with PostgreSQL
 - **Schema**: `server/database/schema.ts` - Contains `users` and `simulations` tables
 - **Database Utils**: `server/utils/drizzle.ts` - Database connection and utilities
 - **Configuration**: `drizzle.config.ts` - Drizzle Kit configuration
-- **Database File**: `.data/db.sqlite` (local development)
+- **Database URL**: Set via `DATABASE_URL` environment variable (default: `postgresql://localhost:5432/financing_simulator`)
 
 ### Frontend Architecture
 - **Framework**: Nuxt 3 with TypeScript

@@ -1,17 +1,17 @@
-import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
+import { pgTable, text, integer, real, timestamp, serial } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 
-export const users = sqliteTable('users', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   password: text('password').notNull(),
   avatar: text('avatar').notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
-export const simulations = sqliteTable("simulations", {
-  id: integer("id").primaryKey(),
+export const simulations = pgTable("simulations", {
+  id: serial("id").primaryKey(),
   name: text("name"),
   email: text("email"),
   propertyValue: real("property_value"),
@@ -20,5 +20,5 @@ export const simulations = sqliteTable("simulations", {
   termMonths: integer("term_months"),
   monthlyInstallment: real("monthly_installment"),
   totalPayable: real("total_payable"),
-  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+  createdAt: timestamp("created_at").defaultNow(),
 });

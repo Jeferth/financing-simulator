@@ -1,5 +1,5 @@
-import { drizzle } from 'drizzle-orm/libsql/node';
-import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as schema from '../database/schema';
 import { sql, eq, and, or } from 'drizzle-orm';
 
@@ -11,9 +11,7 @@ let db: DB | null = null;
 
 export function useDrizzle() {
   if (!db) {
-    const client = createClient({
-      url: process.env.DATABASE_URL || 'file:./.data/db.sqlite',
-    });
+    const client = postgres(process.env.DATABASE_URL || 'postgresql://localhost:5432/financing_simulator');
     db = drizzle(client, { schema });
   }
   return db;

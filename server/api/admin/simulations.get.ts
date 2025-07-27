@@ -35,7 +35,6 @@ export default defineEventHandler(async (event) => {
       .select()
       .from(tables.simulations)
       .orderBy(tables.simulations.createdAt)
-      .all()
     
     return {
       success: true,
